@@ -18,14 +18,14 @@ setIsMenuOpen(!isMenuOpen);
 };
 return (
 <header className="header">
-<h1>REALESTATE</h1>
+<h1><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>REALESTATE</Link></h1>
 <nav className={isMenuOpen ? 'open' : ''}>
     <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
+        {/* <li><Link to="/" >Home</Link></li> */}
+        <li><Link to="/services">Services</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/properties">Properties</Link></li>
-        <li><Link to="/agents">Agents</Link></li>
+        {/* <li><Link to="/agents">Agents</Link></li> */}
         {isLoggedIn ? (
         <>
         <li><Link to={`/${userRole}-dashboard`}>{userRole} Dashboard</Link></li>

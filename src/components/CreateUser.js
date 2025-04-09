@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/CreateUser.css';
-import axios from '../axios';
+import axios from 'axios';
 
 function CreateUser() {
     const [user, setUser] = useState({

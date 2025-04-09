@@ -61,9 +61,9 @@ const LoginForm = () => {
     <div className="wrapper">
       <form className="form" onSubmit={handleLogin}>
         <select value={userType} onChange={(e) => setUserType(e.target.value)} className="input">
-          <option value="Admin">Admin</option>
-          <option value="Agent">Agent</option>
-          <option value="Client">Client</option>
+          <option value="admin">Admin</option>
+          <option value="agent">Agent</option>
+          <option value="client">Client</option>
         </select>
         <div className="input-group">
           <input

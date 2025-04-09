@@ -52,7 +52,7 @@ public class Property implements Serializable{
     
     
     @Column(unique = true, nullable = false, length = 10)
-    private Long ownerContact;
+    private String ownerContact;
     
     @Column(nullable = false, length = 10)
     @NotBlank(message = "Property status is required")
@@ -66,7 +66,7 @@ public class Property implements Serializable{
 			@NotNull @NotBlank(message = "BHK type is required") @Pattern(regexp = "^[0-9]+[BHK]{3}$", message = "BHK type should be in a valid format like '2BHK', '3BHK'") String bhkType,
 			@Min(value = 0, message = "Deposit price must be a positive number") double depositPrice,
 			@NotBlank(message = "Location is required") String location, String description,
-			@NotBlank(message = "Owner name is required") String ownerName, Long ownerContact,
+			@NotBlank(message = "Owner name is required") String ownerName, String ownerContact,
 			@NotBlank(message = "Property status is required") @Pattern(regexp = "^(Available|Sold|Rented)$", message = "Property status must be 'Available', 'Sold', or 'Rented'") String propertyStatus) {
 		super();
 		this.id = id;
@@ -84,7 +84,6 @@ public class Property implements Serializable{
     
     public Property() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -116,8 +115,8 @@ public class Property implements Serializable{
     public String getOwnerName() { return ownerName; }
     public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
 
-    public Long getOwnerContact() { return ownerContact; }
-    public void setOwnerContact(Long ownerContact) { this.ownerContact = ownerContact; }
+    public String getOwnerContact() { return ownerContact; }
+    public void setOwnerContact(String ownerContact2) { this.ownerContact = ownerContact2; }
     
 	public String getPropertyStatus() {
 		return propertyStatus;

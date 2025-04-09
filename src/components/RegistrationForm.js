@@ -121,7 +121,8 @@ const RegistrationForm = () => {
       <input
         type="text"
         name="username"
-        value={formData.email}
+        // value={formData.email}
+        value={formData.username}
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder="Enter email"

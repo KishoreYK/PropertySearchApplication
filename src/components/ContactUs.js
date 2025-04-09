@@ -1,47 +1,53 @@
 import React from 'react';
-import '../styles/ContactUs.css'; // Create this CSS file for styling
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FaPhone, FaCommentDots, FaVideo, FaEnvelope } from 'react-icons/fa';
+import contactImage from '../assets/contactUs.jpg'; // Update if needed
+
+const contactOptions = [
+  { icon: <FaPhone />, title: 'Call', info: '+91 98765 43210', buttonText: 'Call now' },
+  { icon: <FaCommentDots />, title: 'Chat', info: '+91 98765 43211', buttonText: 'Chat now' },
+  { icon: <FaVideo />, title: 'Video Call', info: '+91 98765 43212', buttonText: 'Video Call now' },
+  { icon: <FaEnvelope />, title: 'Message', info: '+91 98765 43213', buttonText: 'Message now' },
+];
 
 const ContactUs = () => {
   return (
-    <div className="contact-section">
-      <div className="contact-info">
-        <p className="contact-title">Easy to contact us</p>
-        <p className="contact-description">
-          We are always ready to help by providing the best services for you. We believe a good place to live can make your life better.
-        </p>
-
-        <div className="contact-methods">
-          <div className="contact-method">
-            <FaPhone className="contact-icon" />
-            <h3>Call</h3>
-            <p>021 123 145 14</p>
-            <button className="contact-button">Call now</button>
+    <Container fluid className="py-5 bg-light">
+      <Row className="align-items-center">
+        <Col lg={6} className="mb-4 mb-lg-0">
+          <h2 className="mb-3 fw-bold">Easy to contact us</h2>
+          <p className="mb-4 text-muted">
+            We are always ready to help by providing the best services for you.
+            We believe a good place to live can make your life better.
+          </p>
+          <Row>
+            {contactOptions.map((option, idx) => (
+              <Col sm={6} className="mb-4" key={idx}>
+                <Card className="text-center shadow-sm h-100">
+                  <Card.Body>
+                    <div className="mb-3 text-primary" style={{ fontSize: '2rem' }}>
+                      {option.icon}
+                    </div>
+                    <Card.Title>{option.title}</Card.Title>
+                    <Card.Text>{option.info}</Card.Text>
+                    <Button variant="primary">{option.buttonText}</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Col>
+        <Col lg={6} className="d-flex justify-content-center">
+          <div style={{ maxWidth: '400px', width: '100%' }}>
+            <img
+              src={contactImage}
+              alt="Contact Us"
+              className="img-fluid rounded shadow"
+            />
           </div>
-          <div className="contact-method">
-            <FaCommentDots className="contact-icon" />
-            <h3>Chat</h3>
-            <p>021 123 145 14</p>
-            <button className="contact-button">Chat now</button>
-          </div>
-          <div className="contact-method">
-            <FaVideo className="contact-icon" />
-            <h3>Video Call</h3>
-            <p>021 123 145 14</p>
-            <button className="contact-button">Video Call now</button>
-          </div>
-          <div className="contact-method">
-            <FaEnvelope className="contact-icon" />
-            <h3>Message</h3>
-            <p>021 123 145 14</p>
-            <button className="contact-button">Message now</button>
-          </div>
-        </div>
-      </div>
-      <div className="contact-image">
-        <img src="../images/contactUS.jpg" alt="Property" width="800px" height="700px"/>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

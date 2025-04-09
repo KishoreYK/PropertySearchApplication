@@ -20,6 +20,8 @@ import PropertyDetails from './components/PropertyDetails'; // Add this import
 import ManageListings from './components/ManageListings';
 import ManageClients from './components/ManageClients';
 import TransactionsPage from './pages/TransactionsPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Services from './pages/Services';
 
 const App = () => {
   const [users, setUsers] = useState([
@@ -33,7 +35,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/properties" element={<PropertiesPage />} />
         <Route path="/agent" element={<AgentPage />} />

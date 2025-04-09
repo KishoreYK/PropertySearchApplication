@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/UpdateUser.css';
-import axios from '../axios';
+import axios from 'axios';
 
 function UpdateUser({ userId }) {
     const [user, setUser] = useState({

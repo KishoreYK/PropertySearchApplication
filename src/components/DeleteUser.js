@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/DeleteUser.css';
-import axios from '../axios';
+import axios from 'axios';
 
 function DeleteUser({ userId }) {
     const handleDelete = () => {

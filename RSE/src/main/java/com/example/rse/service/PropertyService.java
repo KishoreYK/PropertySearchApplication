@@ -45,3 +45,5 @@ public class PropertyService {
     public List<Property> getPropertiesByOwnerName(String ownerName) {
         return propertyRepository.findByOwnerName(ownerName);
     }
+    
+}

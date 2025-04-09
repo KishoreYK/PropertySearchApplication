@@ -42,14 +42,14 @@ public class PropertyController {
             @RequestParam("location") String location,
             @RequestParam("description") String description,
             @RequestParam("ownerName") String ownerName,
-            @RequestParam("ownerContact") Long ownerContact,
+            @RequestParam("ownerContact") String ownerContact,
             @RequestParam("propertyStatus") String propertyStatus) {
 
         Optional<User> user = userService.findByUsername(username);
 
         if (user.isPresent() && "agent".equalsIgnoreCase(user.get().getRole())) {
             try {
-                Property property = new Property(ownerContact, null, propertyStatus, depositPrice, propertyStatus, propertyStatus, propertyStatus, ownerContact, propertyStatus);
+                Property property = new Property();
                 property.setImageUrl(imageFile.getBytes());
                 property.setBhkType(bhkType);
                 property.setDepositPrice(depositPrice);

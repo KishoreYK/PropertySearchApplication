@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/UserList.css';
-import axios from '../axios';
+import axios from 'axios';
 
 function UserList({ onEdit, onDelete }) {
     const [users, setUsers] = useState([]);

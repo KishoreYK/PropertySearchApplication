@@ -15,7 +15,7 @@ const AgentDashboard = () => {
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
     
-    if (loggedInUser && role === 'Agent' && token) {
+    if (loggedInUser && role === 'agent' && token) {
       const name = loggedInUser.split('@')[0];
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
       setDisplayName(capitalizedName);

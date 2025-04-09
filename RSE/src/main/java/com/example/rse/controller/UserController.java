@@ -19,15 +19,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-    
-    
-
 	  @PostMapping("/login")
 	  @CrossOrigin(origins = "http://localhost:3000")
 	  public ResponseEntity<?> login(@Valid @RequestBody User user) {
 	      Optional<User> existingUser = userService.findByUsername(user.getUsername());
 	      if (existingUser.isPresent() && existingUser.get().getPassword().equals(user.getPassword()) && existingUser.get().getRole().equals(user.getRole())) {
+//	      if (true) {
 	          // Return user details including the role
 	          Map<String, Object> response = new HashMap<>();
 	          response.put("email", existingUser.get().getUsername());

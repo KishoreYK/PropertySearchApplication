@@ -22,7 +22,7 @@ public class User {
     private String lastName;
     
     @Column(unique = true, nullable = false, length = 10)
-    private Long mobileNumber;
+    private String mobileNumber;
     
     @Column(unique = true, nullable = false, length = 25)
     //@Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
@@ -85,11 +85,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Long getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(Long mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 

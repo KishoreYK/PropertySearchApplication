@@ -19,7 +19,7 @@ const AdminDashboard = () => {
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
     
-    if (loggedInUser && role === 'Admin' && token) {
+    if (loggedInUser && role === 'admin' && token) {
       const name = loggedInUser.split('@')[0];
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
       setDisplayName(capitalizedName);
