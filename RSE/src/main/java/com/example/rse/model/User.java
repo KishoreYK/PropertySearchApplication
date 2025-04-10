@@ -31,7 +31,7 @@ public class User {
     private String username;
 
     @NotEmpty(message = "Password cannot be empty")
-    @Column(unique = true, nullable = false, length = 8)
+    @Column(nullable = false, length = 8)
     private String password;
 
     @Column(nullable = false, length = 10)

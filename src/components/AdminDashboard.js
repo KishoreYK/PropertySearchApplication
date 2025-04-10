@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../styles/AdminDashboard.css";
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -11,14 +12,14 @@ const AdminDashboard = () => {
   const [editingUser, setEditingUser] = useState(null);
   const [editUserData, setEditUserData] = useState(null);
   const [displayName, setDisplayName] = useState('');
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('username');
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
-    
+
     if (loggedInUser && role === 'admin' && token) {
       const name = loggedInUser.split('@')[0];
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
@@ -29,9 +30,7 @@ const AdminDashboard = () => {
           config.headers.Authorization = `Bearer ${token}`;
           return config;
         },
-        error => {
-          return Promise.reject(error);
-        }
+        error => Promise.reject(error)
       );
 
       fetchUsers();
@@ -54,7 +53,7 @@ const AdminDashboard = () => {
       const response = await axios.post('http://localhost:8080/api/admin/users', newUser);
       setUsers([...users, response.data]);
       setNewUser({ firstName: '', lastName: '', mobileNumber: '', username: '', password: '', role: '' });
-      alert("User added successfully.")
+      alert("User added successfully.");
     } catch (error) {
       console.error('Error creating user', error.response ? error.response.data : error.message);
     }
@@ -80,40 +79,55 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <header className="dashboard-header">
-        <div className="user-info">
-          <div className="user-avatar">👤</div>
-          <div className="user-details">
-            <h1>Welcome, {displayName}</h1>
-            <p>Admin</p>
+    <div className="container py-5">
+      <header className="d-flex justify-content-between align-items-center mb-5">
+        <div className="d-flex align-items-center">
+          <div className="me-3 fs-1">👤</div>
+          <div>
+            <h2 className="mb-0">Welcome, {displayName}</h2>
+            <small className="text-muted">Real Estate Admin</small>
           </div>
         </div>
       </header>
 
       <main>
-        <h2>User Management</h2>
-        
-        <div className="user-form">
-          <h3>Create User</h3>
-          <input type="text" placeholder="First Name" value={newUser.firstName} onChange={(e) => setNewUser({ ...newUser, firstName: e.target.value })} />
-          <input type="text" placeholder="Last Name" value={newUser.lastName} onChange={(e) => setNewUser({ ...newUser, lastName: e.target.value })} />
-          <input type="text" placeholder="Mobile Number" value={newUser.mobileNumber} onChange={(e) => setNewUser({ ...newUser, mobileNumber: e.target.value })} />
-          <input type="text" placeholder="Username" value={newUser.username} onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} />
-          <input type="password" placeholder="Password" value={newUser.password} onChange={(e) => setNewUser({ ...newUser, password: e.target.value })} />
-          <input type="text" placeholder="Role" value={newUser.role} onChange={(e) => setNewUser({ ...newUser, role: e.target.value })} />
-          <button onClick={handleCreateUser}>Create User</button>
+        <h2 className="mb-4">User Management</h2>
+
+        <div className="card mb-5">
+          <div className="card-header">Create User</div>
+          <div className="card-body">
+            <div className="row g-3">
+              {["firstName", "lastName", "mobileNumber", "username", "password", "role"].map((field, idx) => (
+                <div className="col-md-4" key={idx}>
+                  <input
+                    type={field === "password" ? "password" : "text"}
+                    className="form-control"
+                    placeholder={field.replace(/([A-Z])/g, ' $1')}
+                    value={newUser[field]}
+                    onChange={(e) => setNewUser({ ...newUser, [field]: e.target.value })}
+                  />
+                </div>
+              ))}
+            </div>
+            <button className="btn btn-primary mt-3" onClick={handleCreateUser}>Create User</button>
+          </div>
         </div>
 
-        <div>
-          <h3>Users List</h3>
-          <ul className="users-list">
+        <div className="card mb-5">
+          <div className="card-header">Users List</div>
+          <ul className="list-group list-group-flush">
             {users.map(user => (
-              <li key={user.id}>
-                <span>{user.firstName} - {user.lastName} - {user.mobileNumber} - {user.username} - {user.role}</span>
+              <li key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
                 <div>
-                  <button onClick={() => { setEditingUser(user.id); setEditUserData(user); }}>Edit</button>
-                  <button className="delete" onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                  <strong>{user.firstName} {user.lastName}</strong><br />
+                  <span className="text-muted">{user.username} | {user.mobileNumber} | {user.role}</span>
+                </div>
+                <div>
+                  <button className="btn btn-sm btn-secondary me-2" onClick={() => {
+                    setEditingUser(user.id);
+                    setEditUserData(user);
+                  }}>Edit</button>
+                  <button className="btn btn-sm btn-danger" onClick={() => handleDeleteUser(user.id)}>Delete</button>
                 </div>
               </li>
             ))}
@@ -121,15 +135,24 @@ const AdminDashboard = () => {
         </div>
 
         {editingUser && (
-          <div className="user-form">
-            <h3>Edit User</h3>
-            <input type="text" placeholder="First Name" value={editUserData.firstName} onChange={(e) => setEditUserData({ ...editUserData, firstName: e.target.value })} />
-            <input type="text" placeholder="Last Name" value={editUserData.lastName} onChange={(e) => setEditUserData({ ...editUserData, lastName: e.target.value })} />
-            <input type="text" placeholder="Mobile Number" value={editUserData.mobileNumber} onChange={(e) => setEditUserData({ ...editUserData, mobileNumber: e.target.value })} />
-            <input type="text" placeholder="Username" value={editUserData.username} onChange={(e) => setEditUserData({ ...editUserData, username: e.target.value })} />
-            <input type="password" placeholder="Password" value={editUserData.password} onChange={(e) => setEditUserData({ ...editUserData, password: e.target.value })} />
-            <input type="text" placeholder="Role" value={editUserData.role} onChange={(e) => setEditUserData({ ...editUserData, role: e.target.value })} />
-            <button onClick={() => handleUpdateUser(editingUser)}>Update User</button>
+          <div className="card">
+            <div className="card-header">Edit User</div>
+            <div className="card-body">
+              <div className="row g-3">
+                {["firstName", "lastName", "mobileNumber", "username", "password", "role"].map((field, idx) => (
+                  <div className="col-md-4" key={idx}>
+                    <input
+                      type={field === "password" ? "password" : "text"}
+                      className="form-control"
+                      placeholder={field.replace(/([A-Z])/g, ' $1')}
+                      value={editUserData[field]}
+                      onChange={(e) => setEditUserData({ ...editUserData, [field]: e.target.value })}
+                    />
+                  </div>
+                ))}
+              </div>
+              <button className="btn btn-success mt-3" onClick={() => handleUpdateUser(editingUser)}>Update User</button>
+            </div>
           </div>
         )}
       </main>

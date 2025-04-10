@@ -20,12 +20,14 @@ const ManageListings = () => {
     const token = localStorage.getItem('token');
     const loggedInUser = localStorage.getItem('username');
     if (loggedInUser && token) {
+      console.log(loggedInUser)
       const ownerName = loggedInUser.split('@')[0];
       axios.get(`${API_BASE_URL}/properties`, {
         params: { ownerName },
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
+        console.log(response.data);
         setProperties(response.data);
         setFilteredProperties(response.data);
       })

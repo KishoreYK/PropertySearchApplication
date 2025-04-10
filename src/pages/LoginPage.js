@@ -6,7 +6,7 @@ import '../styles/loginsignup.css';
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('Admin');
+  const [userType, setUserType] = useState('admin');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
