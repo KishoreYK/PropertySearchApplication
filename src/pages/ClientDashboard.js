@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ClientDashboard.css';
 import PropertyCard from '../components/PropertyCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_BASE_URL = 'http://localhost:8080/api/properties';
 
@@ -42,14 +43,14 @@ const ClientDashboard = () => {
   }, [navigate]);
 
   return (
-    <div className="client-dashboard">
-      <header className="dashboard-header">
+    <div className="container py-5">
+      <header className="d-flex justify-content-between align-items-center mb-4">
         <div className="user-info">
-          <div className="user-avatar">👤</div>
-          <div className="user-details">
-            <h1>Welcome, {displayName}</h1>
-            <p>Client</p>
-          </div>
+          <div className="me-3 fs-1">👤</div>
+            <div>
+              <h2 className="mb-0">Welcome, {displayName}</h2>
+              <small className="text-muted">Client</small>
+            </div>
         </div>
       </header>
 

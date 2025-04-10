@@ -15,7 +15,7 @@ const OrderSummary = () => {
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
 
-    if (username && role === 'Client' && token) {
+    if (username && role === 'client' && token) {
       const name = username.split('@')[0];
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
       setDisplayName(capitalizedName);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AgentDashboard.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AgentDashboard = () => {
   const [displayName, setDisplayName] = useState('');
@@ -14,7 +14,7 @@ const AgentDashboard = () => {
     const loggedInUser = localStorage.getItem('username');
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
-    
+
     if (loggedInUser && role === 'agent' && token) {
       const name = loggedInUser.split('@')[0];
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
@@ -25,46 +25,71 @@ const AgentDashboard = () => {
   }, [navigate]);
 
   return (
-    <div className='agent-dashboard'>
-    <div className="dashboard">
-      <header className="dashboard-header">
-        <div className="user-info">
-          <div className="user-avatar">👤</div>
-          <div className="user-details">
-            <h1>Welcome, {displayName}</h1>
-            <p>Real Estate Agent</p>
+    <div className="container py-5">
+      <div className="bg-light p-4 rounded shadow">
+        <header className="d-flex justify-content-between align-items-center mb-4">
+          <div className="d-flex align-items-center">
+            <div className="me-3 fs-1">👤</div>
+            <div>
+              <h2 className="mb-0">Welcome, {displayName}</h2>
+              <small className="text-muted">Real Estate Agent</small>
+            </div>
           </div>
-        </div>
-        <div className="header-actions">
-          <button className="btn" onClick={() => navigate('/listings')}>Manage Listings</button>
-          <button className="btn btn-dark" onClick={() => navigate('/clients')}>Manage Clients</button>
-          <button className="btn" onClick={() => navigate('/transactions')}>View Transactions</button>
-        </div>
-      </header>
+          <div className="d-flex gap-2">
+            <button className="btn btn-primary" onClick={() => navigate('/listings')}>
+              Manage Listings
+            </button>
+            <button className="btn btn-primary" onClick={() => navigate('/clients')}>
+              Manage Clients
+            </button>
+            <button className="btn btn-primary" onClick={() => navigate('/transactions')}>
+              View Transactions
+            </button>
+          </div>
+        </header>
 
-      <main className="dashboard-main">
-        <h2>Agent Dashboard</h2>
-        <p>Select an option above to manage your listings, clients, or view transactions.</p>
-        <div className="dashboard-stats">
-          <div className="stat-card">
-            <h3>Agent Ratings</h3>
-            <p>{agentRatings} out of 5 stars</p>
+        <main>
+          <h3 className="mb-3">Agent Dashboard</h3>
+          <p className="text-muted mb-4">
+            Select an option above to manage your listings, clients, or view transactions.
+          </p>
+
+          <div className="row g-4">
+            <div className="col-md-3">
+              <div className="card text-center shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">Agent Ratings</h5>
+                  <p className="card-text">{agentRatings} out of 5 stars</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="card text-center shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">Listings</h5>
+                  <p className="card-text">{listingsCount}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="card text-center shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">Clients</h5>
+                  <p className="card-text">{clientsCount}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="card text-center shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">Transactions</h5>
+                  <p className="card-text">{transactionsCount}</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="stat-card">
-            <h3>Listings</h3>
-            <p>{listingsCount}</p>
-          </div>
-          <div className="stat-card">
-            <h3>Clients</h3>
-            <p>{clientsCount}</p>
-          </div>
-          <div className="stat-card">
-            <h3>Transactions</h3>
-            <p>{transactionsCount}</p>
-          </div>
-    </div>
-      </main>
-    </div>
+        </main>
+      </div>
     </div>
   );
 };
