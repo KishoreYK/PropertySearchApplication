@@ -12,9 +12,9 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const featuredProperties = [
-    { id: '01', name: '01 Apartment', image: '/images/featured1.jpeg' },
-    { id: '02', name: '02 Apartments', image: '/images/featured2.jpeg' },
-    { id: '03', name: 'Saravanan Homes', image: '/images/featured3.jpeg' },
+    { id: '01', name: 'Duplex Home', image: '/images/featured1.jpeg' },
+    { id: '02', name: 'Apartment', image: '/images/featured2.jpeg' },
+    { id: '03', name: 'Private Villa', image: '/images/featured3.jpeg' },
   ];
 
   useEffect(() => {

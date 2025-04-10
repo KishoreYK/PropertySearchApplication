@@ -24,7 +24,6 @@ public class UserController {
 	  public ResponseEntity<?> login(@Valid @RequestBody User user) {
 	      Optional<User> existingUser = userService.findByUsername(user.getUsername());
 	      if (existingUser.isPresent() && existingUser.get().getPassword().equals(user.getPassword()) && existingUser.get().getRole().equals(user.getRole())) {
-//	      if (true) {
 	          // Return user details including the role
 	          Map<String, Object> response = new HashMap<>();
 	          response.put("email", existingUser.get().getUsername());
@@ -38,7 +37,7 @@ public class UserController {
     
     
     @PostMapping("/register")
-    @CrossOrigin(origins = "http://localhost:3000") // Replace with your frontend URL
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<User> register(@Valid @RequestBody User user) {
         return ResponseEntity.ok(userService.saveUser(user));
     }

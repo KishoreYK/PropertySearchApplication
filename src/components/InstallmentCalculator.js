@@ -22,7 +22,7 @@ const InstallmentCalculator = () => {
 
   return (
     <div className="installment-calculator">
-      <h2>Instalment Calculator</h2>
+      <h2>Installment Calculator</h2>
       <input
         type="text"
         placeholder="Property Price"
