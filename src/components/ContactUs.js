@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FaPhone, FaCommentDots, FaVideo, FaEnvelope } from 'react-icons/fa';
-import contactImage from '../assets/contactUs.jpg'; // Update if needed
-
+import contactImage from '../assets/contactUs.jpg';
+import Footer from '../components/Footer';
 const contactOptions = [
   { icon: <FaPhone />, title: 'Call', info: '+91 98765 43210', buttonText: 'Call now' },
   { icon: <FaCommentDots />, title: 'Chat', info: '+91 98765 43211', buttonText: 'Chat now' },
@@ -47,6 +47,7 @@ const ContactUs = () => {
           </div>
         </Col>
       </Row>
+      <Footer/>
     </Container>
   );
 };

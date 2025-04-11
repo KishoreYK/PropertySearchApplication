@@ -21,10 +21,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String clientName;
     
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String agentName;
 
     @Column(nullable = false) 
@@ -36,7 +36,7 @@ public class Transaction {
     @NotBlank(message = "Location is required")
     private String location;
     
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     @NotBlank(message = "Property type is required")
     @Pattern(regexp = "^(Apartment|House|Villa|Land|Commercial)$", message = "Property type must be one of the following: Apartment, House, Villa, Land, Commercial")
     private String propertyType;
