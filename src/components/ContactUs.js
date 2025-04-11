@@ -5,9 +5,9 @@ import contactImage from '../assets/contactUs.jpg';
 import Footer from '../components/Footer';
 const contactOptions = [
   { icon: <FaPhone />, title: 'Call', info: '+91 98765 43210', buttonText: 'Call now' },
-  { icon: <FaCommentDots />, title: 'Chat', info: '+91 98765 43211', buttonText: 'Chat now' },
-  { icon: <FaVideo />, title: 'Video Call', info: '+91 98765 43212', buttonText: 'Video Call now' },
-  { icon: <FaEnvelope />, title: 'Message', info: '+91 98765 43213', buttonText: 'Message now' },
+  { icon: <FaCommentDots />, title: 'Chat', info: '+91 78765 43211', buttonText: 'Chat now' },
+  { icon: <FaVideo />, title: 'Video Call', info: '+91 87645 43212', buttonText: 'Video Call now' },
+  { icon: <FaEnvelope />, title: 'Message', info: '+91 92345 76213', buttonText: 'Message now' },
 ];
 
 const ContactUs = () => {

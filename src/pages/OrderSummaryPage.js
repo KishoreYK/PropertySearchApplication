@@ -23,8 +23,8 @@ const OrderSummary = () => {
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } else {
-      alert("You are not authorized to access this page. Please log in as a client.");
       navigate('/');
+      alert("You are not authorized to access this page. Please log in as a client.");
     }
   }, [navigate]);
 
